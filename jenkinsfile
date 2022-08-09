@@ -6,11 +6,11 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
 
-        AWS_S3_BUCKET = "mohammed-eid-belt2d2-artifacts-123456"
+        AWS_S3_BUCKET = "Lama-alawwad-belt2d2-artifacts-123456"
         ARTIFACT_NAME = "hello-world.jar"
-        AWS_EB_APP_NAME = "mohammed-eid-belt2"
+        AWS_EB_APP_NAME = "lama-alawwad-belt2"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
-        AWS_EB_ENVIRONMENT = "Mohammedeidbelt2-env"
+        AWS_EB_ENVIRONMENT = "LamaAlawwadbelt2-env"
 
         SONAR_IP = "54.226.50.200"
         SONAR_TOKEN = "sqp_aa3cba40e3342d9cff9044e498766a66cf8cc0cc"
