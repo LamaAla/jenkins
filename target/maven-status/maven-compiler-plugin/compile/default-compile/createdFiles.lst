@@ -1,0 +1,15 @@
+com/in28minutes/springboot/configuration/DevelopmentOnlyConfiguration.class
+com/in28minutes/springboot/controller/StudentController.class
+com/in28minutes/springboot/WelcomeController.class
+com/in28minutes/springboot/service/StudentService.class
+com/in28minutes/springboot/StudentApplication.class
+com/in28minutes/springboot/configuration/BasicConfiguration.class
+com/in28minutes/springboot/jpa/UserRestRepository.class
+com/in28minutes/springboot/jpa/UserCommandLineRunner.class
+com/in28minutes/springboot/jpa/User.class
+com/in28minutes/springboot/model/Student.class
+com/in28minutes/springboot/jpa/UserRepository.class
+com/in28minutes/springboot/configuration/ProductionOnlyConfiguration.class
+com/in28minutes/springboot/WelcomeService.class
+com/in28minutes/springboot/model/Course.class
+com/in28minutes/springboot/security/SecurityConfig.class
