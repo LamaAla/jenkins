@@ -3,14 +3,14 @@ pipeline {
 
     environment {
 
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+        AWS_ACCESS_KEY_ID     = credentials('LamaAlawwad-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('LamaAlawwad-aws-secret-access-key')
 
-        AWS_S3_BUCKET = "lamaalawwad-belt2-artifacts-123456"
-        ARTIFACT_NAME = "spring-boot-rest-services-0.0.1-SNAPSHOT.jar"
+        AWS_S3_BUCKET = "lamaalawwad-belt2-artifacts-12345"
+        ARTIFACT_NAME = "hello-world.war"
         AWS_EB_APP_NAME = "LamaAlawwad-java-belt2"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
-        AWS_EB_ENVIRONMENT = "lamaalawwadjavabelt2-env"
+        AWS_EB_ENVIRONMENT = "Lamaalawwadjavabelt2-env"
 
         SONAR_IP = "54.226.50.200"
         SONAR_TOKEN = "sqp_aa3cba40e3342d9cff9044e498766a66cf8cc0cc"
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+         stage('Build') {
             steps {
                 
                 sh "mvn compile"
@@ -45,7 +45,7 @@ pipeline {
 
             post {
                 always {
-                    junit '/target/surefire-reports/TEST-*.xml'
+                    junit '**/target/surefire-reports/TEST-*.xml'
                 }
             }
         }
@@ -53,10 +53,12 @@ pipeline {
         stage('Quality Scan'){
             steps {
                 sh '''
+
                 mvn clean verify sonar:sonar \
                     -Dsonar.projectKey=Online-cohort-project \
                     -Dsonar.host.url=http://$SONAR_IP \
                     -Dsonar.login=$SONAR_TOKEN
+
                 '''
             }
         }
@@ -70,9 +72,9 @@ pipeline {
 
             post {
                 success {
-                    archiveArtifacts artifacts: '/target/.jar', followSymlinks: false
+                    archiveArtifacts artifacts: '**/target/**.war', followSymlinks: false
 
-                
+                   
                 }
             }
         }
@@ -82,7 +84,7 @@ pipeline {
 
                 sh "aws configure set region us-east-1"
 
-                sh "aws s3 cp ./target/.jar s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
+                sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
                 
             }
         }
