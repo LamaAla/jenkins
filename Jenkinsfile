@@ -12,8 +12,6 @@ pipeline {
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         AWS_EB_ENVIRONMENT = "Lamaalawwadjavabelt2-env"
 
-        SONAR_IP = "54.226.50.200"
-        SONAR_TOKEN = "sqp_aa3cba40e3342d9cff9044e498766a66cf8cc0cc"
         
     }
 
@@ -50,16 +48,6 @@ pipeline {
             }
         }
 
-        stage('Quality Scan'){
-            steps {
-                sh '''
-                mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=Online-cohort-project \
-                    -Dsonar.host.url=http://$SONAR_IP \
-                    -Dsonar.login=$SONAR_TOKEN
-                '''
-            }
-        }
 
         stage('Package') {
             steps {
